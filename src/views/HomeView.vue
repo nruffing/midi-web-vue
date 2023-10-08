@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import MidiOutputSelect from '@/components/MidiOutputSelect.vue';
-import MidiChannelSelect from '@/components/MidiChannelSelect.vue';
+import { defineComponent } from 'vue'
+import MidiOutputSelect from '@/components/MidiOutputSelect.vue'
+import MidiChannelSelect from '@/components/MidiChannelSelect.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -19,5 +19,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

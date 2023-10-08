@@ -1,8 +1,8 @@
 <template>
-    <!--https://open-ui.org/components/selectlist/-->
-    <select>
-        <option v-for="device in devicesStore.outputs">{{ device.name }}</option>
-    </select>
+  <!--https://open-ui.org/components/selectlist/-->
+  <select>
+    <option v-for="device in devicesStore.outputs">{{ device.name }}</option>
+  </select>
 </template>
 
 <script lang="ts">
@@ -14,10 +14,8 @@ export default defineComponent({
   name: 'MidiOutputSelect',
   computed: {
     ...mapStores(useDevicesStore),
-  }  
+  },
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
