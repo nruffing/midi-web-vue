@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "pretty": "npx prettier --write \"./**/*.{ts,json,vue,css}\""
+    "format": "npx prettier --write \"./**/*.{ts,json,vue,css}\""
   },
   "dependencies": {
     "pinia": "^2.1.6",

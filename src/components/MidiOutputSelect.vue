@@ -1,7 +1,12 @@
 <template>
   <!--https://open-ui.org/components/selectlist/-->
   <select>
-    <option v-for="device in devicesStore.outputs">{{ device.name }}</option>
+    <option
+      v-for="device in devicesStore.outputs"
+      :value="device"
+    >
+      {{ device.name }}
+    </option>
   </select>
 </template>
 

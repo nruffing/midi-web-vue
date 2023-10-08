@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { MidiChannel } from '../types/midi'
+import { MidiChannel } from '@/midi/midiChannel'
 
 interface MidiChannelOption {
   name: string
@@ -37,3 +37,4 @@ export default defineComponent({
 </script>
 
 <style scoped></style>
+../types/midiChannel../midi/types/midi

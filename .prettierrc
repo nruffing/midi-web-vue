@@ -7,5 +7,6 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "avoid",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "printWidth": 150
 }
