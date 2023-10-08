@@ -1,14 +1,13 @@
-<script setup lang="ts">
-import { useDevicesStore } from '@/stores/devicesStore';
-
-const devicesStore = useDevicesStore()
-</script>
-
 <template>
   <main>
-    <div v-for="output in devicesStore.outputs">{{ output.name }}</div>
+    <MidiOutputSelect />
   </main>
 </template>
+
+<script setup lang="ts">
+import MidiOutputSelect from '@/components/MidiOutputSelect.vue';
+
+</script>
 
 <style scoped>
 </style>
