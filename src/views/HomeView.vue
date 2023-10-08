@@ -5,10 +5,18 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MidiOutputSelect from '@/components/MidiOutputSelect.vue';
 import MidiChannelSelect from '@/components/MidiChannelSelect.vue';
 
+export default defineComponent({
+  name: 'HomeView',
+  components: {
+    MidiOutputSelect,
+    MidiChannelSelect,
+  },
+})
 </script>
 
 <style scoped>

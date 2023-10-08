@@ -10,8 +10,8 @@
     </select>
 </template>
 
-<script lang="ts" setup>
-import { computed } from 'vue';
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { MidiChannel } from '../types/midi'
 
 interface MidiChannelOption {
@@ -19,15 +19,20 @@ interface MidiChannelOption {
     value: MidiChannel,
 }
 
-const options = computed<MidiChannelOption[]>(() => {
-    return Object.keys(MidiChannel)
-        .filter(key => isNaN(Number(key)))
-        .map(key => {
-            return {
-                name: key.replace('_', ' '),
-                value: MidiChannel[key as keyof typeof MidiChannel],
-            }
-        })
+export default defineComponent({
+    name: 'MidiChannelSelect',
+    computed: {
+        options(): MidiChannelOption[] {
+            return Object.keys(MidiChannel)
+                .filter(key => isNaN(Number(key)))
+                .map(key => {
+                    return {
+                        name: key.replace('_', ' '),
+                        value: MidiChannel[key as keyof typeof MidiChannel],
+                    }
+                })
+        }
+    }
 })
 </script>
 

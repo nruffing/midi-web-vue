@@ -4,15 +4,19 @@
   <RouterView />
 </template>
 
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import { RouterView } from 'vue-router'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { mapStores } from 'pinia'
 import { useDevicesStore } from './stores/devicesStore'
 
-const devicesStore = useDevicesStore()
-
-onMounted(() => {
-  devicesStore.initialize()
+export default defineComponent({
+  name: 'App',
+  computed: {
+    ...mapStores(useDevicesStore),
+  },
+  mounted() {
+    this.devicesStore.initialize()
+  },
 })
 </script>
 

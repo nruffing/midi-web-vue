@@ -5,10 +5,17 @@
     </select>
 </template>
 
-<script lang="ts" setup>
-import { useDevicesStore } from '@/stores/devicesStore';
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { mapStores } from 'pinia'
+import { useDevicesStore } from '@/stores/devicesStore'
 
-const devicesStore = useDevicesStore();
+export default defineComponent({
+  name: 'MidiOutputSelect',
+  computed: {
+    ...mapStores(useDevicesStore),
+  }  
+})
 </script>
 
 <style scoped>
