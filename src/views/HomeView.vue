@@ -1,23 +1,17 @@
 <template>
   <main>
-    <MidiOutputSelect />
-    <MidiConfigSelect />
-    <MidiChannelSelect />
+    <ControlSet />
   </main>
 </template>
 
 <script lang="ts">
+import ControlSet from '@/components/ControlSet.vue'
 import { defineComponent } from 'vue'
-import MidiOutputSelect from '@/components/MidiOutputSelect.vue'
-import MidiChannelSelect from '@/components/MidiChannelSelect.vue'
-import MidiConfigSelect from '@/components/MidiConfigSelect.vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    MidiOutputSelect,
-    MidiChannelSelect,
-    MidiConfigSelect,
+    ControlSet,
   },
 })
 </script>

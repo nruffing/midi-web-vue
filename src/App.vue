@@ -1,7 +1,7 @@
 <template>
   <!-- <header>
   </header> -->
-  <RouterView />
+  <RouterView v-if="devicesStore.outputs" />
 </template>
 
 <script lang="ts">
@@ -14,8 +14,8 @@ export default defineComponent({
   computed: {
     ...mapStores(useDevicesStore),
   },
-  mounted() {
-    this.devicesStore.initialize()
+  async mounted() {
+    await this.devicesStore.initialize()
   },
 })
 </script>

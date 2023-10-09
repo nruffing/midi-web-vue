@@ -16,3 +16,17 @@ export enum MidiChannel {
   _15 = 14,
   _16 = 15,
 }
+
+export interface MidiChannelOption {
+  name: string
+  value: MidiChannel
+}
+
+export const channels = Object.keys(MidiChannel)
+  .filter(key => isNaN(Number(key)))
+  .map(key => {
+    return {
+      name: key.replace('_', ''),
+      value: MidiChannel[key as keyof typeof MidiChannel],
+    }
+  })
