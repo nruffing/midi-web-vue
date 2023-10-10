@@ -17,6 +17,18 @@
       :items="channels"
       display-property="name"
     />
+    <div
+      v-if="selectedOutput && selectedConfig && selectedChannel"
+      v-for="command in selectedConfig?.controlChangeCommands"
+      :key="command.commandNumber"
+    >
+      <Control
+        :output="selectedOutput"
+        :config="selectedConfig"
+        :channel="selectedChannel.value"
+        :command="command"
+      />
+    </div>
   </div>
 </template>
 
@@ -28,6 +40,7 @@ import { useConfigStore } from '@/stores/configStore'
 import SelectInput from './SelectInput.vue'
 import { controllableSort, type Controllable } from '@/config/controllable'
 import { channels, MidiChannel, type MidiChannelOption } from '@/midi/midiChannel'
+import Control from './Control.vue'
 
 interface Data {
   selectedOutput: MIDIOutput | undefined
@@ -39,6 +52,7 @@ export default defineComponent({
   name: 'ControlSet',
   components: {
     SelectInput,
+    Control,
   },
   data(): Data {
     return {

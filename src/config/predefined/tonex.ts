@@ -21,9 +21,9 @@ export const TonexConfig = {
     ControlChangeCommand.rangeCommand('Bass', 23),
     ControlChangeCommand.rangeCommand('Mid', 24),
     ControlChangeCommand.rangeCommand('Treble', 25),
-    ControlChangeCommand.toggleCommand('Reverb', 79),
-    ControlChangeCommand.toggleCommand('Compressor', 19),
-    ControlChangeCommand.toggleCommand('Noise Gate', 15),
+    ControlChangeCommand.toggleCommand('Reverb', 75),
+    ControlChangeCommand.toggleCommand('Compressor', 18),
+    ControlChangeCommand.toggleCommand('Noise Gate', 14),
     ControlChangeCommand.rangeCommand('Model Volume', 103),
     // TODO
   ],

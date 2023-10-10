@@ -1,4 +1,6 @@
+import type { Controllable } from '@/config/controllable'
 import { validateByte } from './byteUtilities'
+import type { MidiChannel } from './midiChannel'
 
 export class ControlChangeCommand {
   name: string
@@ -38,11 +40,39 @@ export class ControlChangeCommand {
   }
 
   static toggleCommand(name: string, commandNumber: number, offValue: number = 0, onValue: number = 127) {
-    return new ControlChangeCommand(name, ControlChangeCommandType.range, commandNumber, undefined, undefined, offValue, onValue)
+    return new ControlChangeCommand(name, ControlChangeCommandType.toggle, commandNumber, undefined, undefined, offValue, onValue)
   }
 }
 
 export enum ControlChangeCommandType {
   range = 0,
   toggle = 1,
+}
+
+export class ControlChangeParameter {
+  config: Controllable
+  command: ControlChangeCommand
+  value: number
+
+  constructor(config: Controllable, command: ControlChangeCommand, value: number = 0) {
+    this.config = config
+    this.command = command
+    this.value = value
+  }
+
+  sendValue(output: MIDIOutput, value: number | undefined, channel: MidiChannel) {
+    validateByte(value, this.command.name)
+    this.value = value ?? 0
+
+    const commandStatusByte = (this.config.controlChangeCommand << 4) + channel
+    const bytes = [commandStatusByte, this.command.commandNumber, this.value]
+
+    console.log({
+      value,
+      channel,
+      controlChangeCommand: this.config.controlChangeCommand,
+      bytes,
+    })
+    output.send(bytes)
+  }
 }
