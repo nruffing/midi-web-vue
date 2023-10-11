@@ -1,30 +1,33 @@
 <template>
   <div class="control-set">
-    <SelectInput
-      v-model="selectedOutput"
-      :items="devicesStore.outputs"
-      display-property="name"
-      @update:model-value="updateModelValue"
-    />
-    <SelectInput
-      v-model="selectedConfig"
-      :items="configStore.configs"
-      display-property="shortName"
-      :sort-function="controllableSort"
-      @update:model-value="onConfigSelected"
-    />
-    <SelectInput
-      v-model="selectedChannel"
-      :items="channels"
-      display-property="name"
-      @update:model-value="updateModelValue"
-    />
+    <div class="control-set-header">
+      <SelectInput
+        v-model="selectedOutput"
+        :items="devicesStore.outputs"
+        display-property="name"
+        @update:model-value="updateModelValue"
+      />
+      <SelectInput
+        v-model="selectedConfig"
+        :items="configStore.configs"
+        display-property="shortName"
+        :sort-function="controllableSort"
+        @update:model-value="onConfigSelected"
+      />
+      <SelectInput
+        v-model="selectedChannel"
+        :items="channels"
+        display-property="name"
+        @update:model-value="updateModelValue"
+      />
+    </div>
     <div
       v-if="selectedOutput && selectedConfig && selectedChannel"
-      v-for="command in selectedConfig?.controlChangeCommands"
-      :key="modelValue.id + selectedConfig.name + command.commandNumber"
+      class="controls-container"
     >
       <Control
+        v-for="command in selectedConfig?.controlChangeCommands"
+        :key="modelValue.id + selectedConfig.name + command.commandNumber"
         :output="selectedOutput"
         :config="selectedConfig"
         :channel="selectedChannel.value"
@@ -127,4 +130,29 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.control-set {
+  padding: var(--spacer-2x);
+  display: flex;
+  flex-direction: column;
+  border: var(--control-set-border);
+  border-radius: var(--border-radius);
+}
+
+.control-set-header {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacer);
+  justify-content: center;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacer);
+}
+
+.controls-container > * {
+  flex: 1;
+}
+</style>

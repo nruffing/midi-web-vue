@@ -1,30 +1,32 @@
 :root {
   --base-900: #222222;
+  --base-700: #444444;
+  --base-600: #333333;
+  --base-200: #bbbbbb;
   --base-100: #dddddd;
   --base-000: #ffffff;
 
   --primary-400: #ff7b00;
+  --primary-200: #ff9d41;
+
+  font-size: 10px;
 }
 
-/* semantic color variables for this project */
 :root {
+  --border-radius: 5px;
+
   --color-background: var(--base-900);
-
-  /* --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1); */
-
-  --color-heading: var(--primary-400);
   --color-text: var(--base-100);
 
-  /* --section-gap: 160px; */
-}
+  --control-set-border: var(--base-600) solid 1px;
 
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-} 
-*/
+  --control-toggle-off-color: var(--base-200);
+  --control-toggle-on-color: var(--primary-400);
+
+  --spacer: 1rem;
+  --spacer-2x: 2rem;
+  --spacer-3x: 3rem;
+}
 
 *,
 *::before,

@@ -1,13 +1,15 @@
 <template>
-  <main>
-    <button @click="addControlSet">Add</button>
+  <div class="control-set-list">
+    <div class="control-set-list-header">
+      <button @click="addControlSet">Add</button>
+    </div>
     <ControlSet
       v-for="controlSet in controlSets"
       :model-value="controlSet"
       :key="controlSet.id"
       @update:model-value="saveControlSets"
     />
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -56,4 +58,11 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.control-set-list {
+  padding: var(--spacer-2x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-2x);
+}
+</style>
