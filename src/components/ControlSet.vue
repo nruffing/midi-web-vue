@@ -137,11 +137,13 @@ export default defineComponent({
   flex-direction: column;
   border: var(--control-set-border);
   border-radius: var(--border-radius);
+  gap: var(--spacer);
 }
 
 .control-set-header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--spacer);
   justify-content: center;
 }
@@ -149,10 +151,8 @@ export default defineComponent({
 .controls-container {
   display: flex;
   flex-direction: row;
-  gap: var(--spacer);
-}
-
-.controls-container > * {
-  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--spacer-3x);
+  justify-content: center;
 }
 </style>

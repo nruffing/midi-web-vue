@@ -8,6 +8,14 @@
       :label="command.name"
       @update:model-value="onValueUpdate"
     />
+    <ControlValue
+      v-if="isRange"
+      v-model="value"
+      :min-value="command.minValue ?? 0"
+      :max-value="command.maxValue ?? 0"
+      :label="command.name"
+      @update:model-value="onValueUpdate"
+    />
   </div>
 </template>
 
@@ -16,6 +24,7 @@ import { defineComponent, type PropType } from 'vue'
 import { ControlChangeCommandType, type ControlChangeCommand, ControlChangeParameter } from '@/midi/controlChange'
 import type { Controllable } from '@/config/controllable'
 import ControlToggle from './ControlToggle.vue'
+import ControlValue from './ControlValue.vue'
 
 interface Data {
   value: number
@@ -24,7 +33,7 @@ interface Data {
 
 export default defineComponent({
   name: 'Control',
-  components: { ControlToggle },
+  components: { ControlToggle, ControlValue },
   props: {
     output: {
       type: Object as PropType<MIDIOutput>,
@@ -52,6 +61,9 @@ export default defineComponent({
   computed: {
     isToggle(): boolean {
       return this.command.type === ControlChangeCommandType.toggle
+    },
+    isRange(): boolean {
+      return this.command.type === ControlChangeCommandType.range
     },
   },
   mounted() {

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/uuid": "^9.0.5",
+    "debounce": "^1.2.1",
     "pinia": "^2.1.6",
     "uuid": "^9.0.1",
     "vue": "^3.3.4",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
+    "@types/debounce": "^1.2.2",
     "@types/node": "^18.17.17",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/tsconfig": "^0.4.0",
