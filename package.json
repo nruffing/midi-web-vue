@@ -11,7 +11,9 @@
     "format": "npx prettier --write \"./**/*.{ts,json,vue,css}\""
   },
   "dependencies": {
+    "@types/uuid": "^9.0.5",
     "pinia": "^2.1.6",
+    "uuid": "^9.0.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },

@@ -1,17 +1,17 @@
 <template>
   <main>
-    <ControlSet />
+    <ControlSetList />
   </main>
 </template>
 
 <script lang="ts">
-import ControlSet from '@/components/ControlSet.vue'
+import ControlSetList from '@/components/ControlSetList.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    ControlSet,
+    ControlSetList,
   },
 })
 </script>

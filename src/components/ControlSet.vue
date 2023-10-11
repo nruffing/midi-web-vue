@@ -4,6 +4,7 @@
       v-model="selectedOutput"
       :items="devicesStore.outputs"
       display-property="name"
+      @update:model-value="updateModelValue"
     />
     <SelectInput
       v-model="selectedConfig"
@@ -16,11 +17,12 @@
       v-model="selectedChannel"
       :items="channels"
       display-property="name"
+      @update:model-value="updateModelValue"
     />
     <div
       v-if="selectedOutput && selectedConfig && selectedChannel"
       v-for="command in selectedConfig?.controlChangeCommands"
-      :key="command.commandNumber"
+      :key="modelValue.id + selectedConfig.name + command.commandNumber"
     >
       <Control
         :output="selectedOutput"
@@ -33,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 import { mapStores } from 'pinia'
 import { useDevicesStore } from '@/stores/devicesStore'
 import { useConfigStore } from '@/stores/configStore'
@@ -48,11 +50,24 @@ interface Data {
   selectedChannel: MidiChannelOption | undefined
 }
 
+export interface ControlSetState {
+  id: string
+  outputId: string | undefined
+  configName: string | undefined
+  channel: number | undefined
+}
+
 export default defineComponent({
   name: 'ControlSet',
   components: {
     SelectInput,
     Control,
+  },
+  props: {
+    modelValue: {
+      type: Object as PropType<ControlSetState>,
+      required: true,
+    },
   },
   data(): Data {
     return {
@@ -67,23 +82,46 @@ export default defineComponent({
     channels: () => channels,
   },
   mounted() {
-    if (this.devicesStore.outputs?.length) {
-      this.selectedOutput = this.devicesStore.outputs[0]
-    }
-    if (this.configStore.configs?.length) {
-      this.selectedConfig = this.configStore.configs[0]
-    }
-    this.onConfigSelected()
+    this.loadModelValue()
   },
   methods: {
-    onConfigSelected() {
-      if (!this.selectedConfig) {
-        return
-      }
-      this.selectChannel(this.selectedConfig.defaultChannel)
+    loadModelValue() {
+      this.selectOutput(this.modelValue.outputId)
+      this.selectConfig(this.modelValue.configName)
+      this.selectChannel(this.modelValue.channel)
+      this.autoSelectDefaultChannel()
     },
-    selectChannel(channel: MidiChannel | number) {
-      this.selectedChannel = this.channels.find(c => c.value === channel)
+    updateModelValue() {
+      this.$emit('update:model-value', {
+        id: this.modelValue.id,
+        outputId: this.selectedOutput?.id,
+        configName: this.selectedConfig?.name,
+        channel: this.selectedChannel?.value,
+      } as ControlSetState)
+    },
+    onConfigSelected() {
+      this.autoSelectDefaultChannel()
+      this.updateModelValue()
+    },
+    autoSelectDefaultChannel() {
+      if (!this.selectedChannel && this.selectedConfig) {
+        this.selectChannel(this.selectedConfig.defaultChannel)
+      }
+    },
+    selectOutput(outputId: string | undefined) {
+      this.selectedOutput = outputId ? this.devicesStore.outputs?.find(o => o.id === outputId) : undefined
+      if (!this.selectedOutput && this.devicesStore.outputs?.length) {
+        this.selectedOutput = this.devicesStore.outputs[0]
+      }
+    },
+    selectConfig(name: string | undefined) {
+      this.selectedConfig = name ? this.configStore.configs.find(c => c.name === name) : undefined
+      if (!this.selectedConfig && this.configStore.configs?.length) {
+        this.selectedConfig = this.configStore.configs[0]
+      }
+    },
+    selectChannel(channel: MidiChannel | number | undefined) {
+      this.selectedChannel = channel || channel === 0 ? this.channels.find(c => c.value === channel) : undefined
     },
   },
 })
