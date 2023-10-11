@@ -37,7 +37,6 @@ export default defineComponent({
   props: {
     output: {
       type: Object as PropType<MIDIOutput>,
-      required: true,
     },
     config: {
       type: Object as PropType<Controllable>,
@@ -71,7 +70,9 @@ export default defineComponent({
   },
   methods: {
     onValueUpdate() {
-      this.parameter?.sendValue(this.output, this.value, this.channel)
+      if (this.output) {
+        this.parameter?.sendValue(this.output, this.value, this.channel)
+      }
     },
   },
 })

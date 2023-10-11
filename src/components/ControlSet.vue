@@ -22,7 +22,7 @@
       />
     </div>
     <div
-      v-if="selectedOutput && selectedConfig && selectedChannel"
+      v-if="selectedConfig && selectedChannel"
       class="controls-container"
     >
       <Control

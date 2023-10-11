@@ -11,6 +11,6 @@ export interface State {
 
 export const useConfigStore = defineStore('config', {
   state: (): State => ({
-    configs: [TonexConfig, Grandmeister40Config, GenerationLossConfig, Md500Config],
+    configs: [TonexConfig, Grandmeister40Config /*, GenerationLossConfig, Md500Config*/],
   }),
 })
