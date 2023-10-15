@@ -3,7 +3,7 @@
     <header>
       <button @click="addControlSet">Add</button>
       <span class="flex-spacer" />
-      <button 
+      <button
         class="debug-button"
         @click="showDebug = !showDebug"
       >
@@ -23,7 +23,7 @@ import MidiLog from '@/components/MidiLog.vue'
 import { defineComponent } from 'vue'
 
 interface Data {
-  showDebug: boolean,
+  showDebug: boolean
 }
 
 export default defineComponent({

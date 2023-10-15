@@ -155,6 +155,7 @@ export default defineComponent({
   border: var(--control-set-border);
   border-radius: var(--border-radius);
   gap: var(--spacer);
+  background: var(--control-set-background);
 }
 
 .control-set-header {

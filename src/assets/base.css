@@ -1,5 +1,6 @@
 :root {
   --base-900: #222222;
+  --base-800: #333333;
   --base-700: #444444;
   --base-600: #555555;
   --base-500: #666666;
@@ -20,6 +21,7 @@
   --color-background: var(--base-900);
   --color-text: var(--base-100);
 
+  --control-set-background: var(--base-800);
   --control-set-border: var(--primary-400) solid 1px;
 
   --control-group-border: var(--base-600) solid 1px;
@@ -51,7 +53,7 @@
 
 body {
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   color: var(--color-text);
   background: var(--color-background);
   transition:
