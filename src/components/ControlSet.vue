@@ -189,5 +189,6 @@ export default defineComponent({
 .control-group-label {
   color: var(--control-group-label-color);
   text-align: center;
+  font-weight: 500;
 }
 </style>

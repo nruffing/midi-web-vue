@@ -160,6 +160,9 @@ export default defineComponent({
       updateValueDebounce: debounce(this.updateModelValue, 300),
     }
   },
+  mounted() {
+    this.value = Math.floor((this.maxValue - this.minValue) / 2)
+  },
   computed: {
     stepsHighlighted(): number {
       if (!this.value) {
