@@ -161,7 +161,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.value = Math.floor((this.maxValue - this.minValue) / 2)
+    this.value = this.midPoint
   },
   computed: {
     stepsHighlighted(): number {
