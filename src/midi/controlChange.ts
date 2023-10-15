@@ -10,6 +10,7 @@ export class ControlChangeCommand {
   maxValue: number | undefined
   offValue: number | undefined
   onValue: number | undefined
+  selectItems: ControlChangeSelectItem[] | undefined
 
   private constructor(
     name: string,
@@ -19,12 +20,17 @@ export class ControlChangeCommand {
     maxValue: number | undefined,
     offValue: number | undefined,
     onValue: number | undefined,
+    selectItems: ControlChangeSelectItem[] | undefined
   ) {
     validateByte(commandNumber, 'commandNumber')
     validateByte(minValue, 'minValue')
     validateByte(maxValue, 'maxValue')
     validateByte(offValue, 'offValue')
     validateByte(onValue, 'onValue')
+
+    for (const selectItem of selectItems ?? []) {
+      validateByte(selectItem.value, selectItem.name)
+    }
 
     this.name = name
     this.type = type
@@ -33,20 +39,31 @@ export class ControlChangeCommand {
     this.maxValue = maxValue
     this.offValue = offValue
     this.onValue = onValue
+    this.selectItems = selectItems
   }
 
   static rangeCommand(name: string, commandNumber: number, minValue: number = 0, maxValue: number = 127) {
-    return new ControlChangeCommand(name, ControlChangeCommandType.range, commandNumber, minValue, maxValue, undefined, undefined)
+    return new ControlChangeCommand(name, ControlChangeCommandType.range, commandNumber, minValue, maxValue, undefined, undefined, undefined)
   }
 
   static toggleCommand(name: string, commandNumber: number, offValue: number = 0, onValue: number = 127) {
-    return new ControlChangeCommand(name, ControlChangeCommandType.toggle, commandNumber, undefined, undefined, offValue, onValue)
+    return new ControlChangeCommand(name, ControlChangeCommandType.toggle, commandNumber, undefined, undefined, offValue, onValue, undefined)
   }
+
+  static selectCommand(name: string, commandNumber: number, selectItems: ControlChangeSelectItem[]) {
+    return new ControlChangeCommand(name, ControlChangeCommandType.select, commandNumber, undefined, undefined, undefined, undefined, selectItems)
+  }
+}
+
+export interface ControlChangeSelectItem {
+  name: string,
+  value: number,
 }
 
 export enum ControlChangeCommandType {
   range = 0,
   toggle = 1,
+  select = 2,
 }
 
 export class ControlChangeParameter {

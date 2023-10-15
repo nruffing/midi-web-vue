@@ -3,6 +3,7 @@
   --base-700: #444444;
   --base-600: #555555;
   --base-500: #666666;
+  --base-300: #aaaaaa;
   --base-200: #bbbbbb;
   --base-100: #dddddd;
   --base-000: #ffffff;
@@ -28,6 +29,9 @@
   --control-value-dimple-color: var(--base-900);
   --control-value-highlight-color: var(--primary-400);
   --control-value-step-color: var(--base-600);
+
+  --control-select-unselected-color: var(--base-300);
+  --control-select-selected-color: var(--primary-200);
 
   --spacer: 1rem;
   --spacer-2x: 2rem;

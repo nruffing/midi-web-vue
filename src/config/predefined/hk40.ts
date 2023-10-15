@@ -12,7 +12,12 @@ export const Grandmeister40Config = {
     ControlChangeCommand.toggleCommand('Mute', 9),
 
     // Channel
-    ControlChangeCommand.rangeCommand('Channel', 31), // TODO - multi select commands
+    ControlChangeCommand.selectCommand('Channel', 31, [
+      { name: 'Clean', value: 0 },
+      { name: 'Crunch', value: 33 },
+      { name: 'Lead', value: 65 },
+      { name: 'Ultra', value: 96 },
+    ]),
     ControlChangeCommand.rangeCommand('Volume (soft)', 7),
     ControlChangeCommand.rangeCommand('Volume (hard)', 57),
     ControlChangeCommand.rangeCommand('Gain (soft)', 20),
@@ -24,7 +29,13 @@ export const Grandmeister40Config = {
     ControlChangeCommand.rangeCommand('Presence', 25),
 
     // Power Soak
-    // ControlChangeCommand.rangeCommand('Power Soak', 30), // TODO - multi select commands
+    ControlChangeCommand.selectCommand('Power Soak', 30, [
+      { name: 'Speaker Off', value: 0 },
+      { name: '1W', value: 25 },
+      { name: '5W', value: 50 },
+      { name: '20W', value: 75 },
+      { name: 'Soak Off (40W)', value: 100 },
+    ]),
 
     // Preamp EQ
     ControlChangeCommand.rangeCommand('Bass', 21),
@@ -33,7 +44,12 @@ export const Grandmeister40Config = {
 
     // Modulation FX
     ControlChangeCommand.toggleCommand('Mod-FX', 52),
-    ControlChangeCommand.rangeCommand('Mod-FX Type', 12), // TODO - multi select commands
+    ControlChangeCommand.selectCommand('Mod-FX Type', 12, [
+      { name: 'Chorus', value: 1 },
+      { name: 'Flanger', value: 33 },
+      { name: 'Phaser', value: 65 },
+      { name: 'Tremolo', value: 97 },
+    ]),
     ControlChangeCommand.rangeCommand('Modulation Intensity', 1),
     ControlChangeCommand.rangeCommand('Mod Speed', 26),
 

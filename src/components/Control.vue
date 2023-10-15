@@ -16,6 +16,13 @@
       :label="command.name"
       @update:model-value="onValueUpdate"
     />
+    <ControlSelect
+      v-if="isSelect"
+      v-model="value"
+      :select-items="command.selectItems ?? []"
+      :label="command.name"
+      @update:model-value="onValueUpdate"
+    />
   </div>
 </template>
 
@@ -27,6 +34,7 @@ import type { Controllable } from '@/config/controllable'
 import ControlToggle from './ControlToggle.vue'
 import ControlValue from './ControlValue.vue'
 import { useMidiStore } from '@/stores/midiStore'
+import ControlSelect from './ControlSelect.vue'
 
 interface Data {
   value: number
@@ -35,7 +43,7 @@ interface Data {
 
 export default defineComponent({
   name: 'Control',
-  components: { ControlToggle, ControlValue },
+  components: { ControlToggle, ControlValue, ControlSelect },
   props: {
     output: {
       type: Object as PropType<MIDIOutput>,
@@ -66,6 +74,9 @@ export default defineComponent({
     },
     isRange(): boolean {
       return this.command.type === ControlChangeCommandType.range
+    },
+    isSelect(): boolean {
+      return this.command.type === ControlChangeCommandType.select
     },
   },
   mounted() {
