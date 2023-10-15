@@ -10,7 +10,7 @@ export const Grandmeister40Config = {
 
   controlChangeCommands: [
     ControlChangeCommand.toggleCommand('Mute', 9),
-    
+
     // Channel
     ControlChangeCommand.rangeCommand('Channel', 31), // TODO - multi select commands
     ControlChangeCommand.rangeCommand('Volume (soft)', 7),

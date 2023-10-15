@@ -17,11 +17,11 @@ export const TonexConfig = {
   controlChangeCommands: [
     ControlChangeCommand.toggleCommand('Preset', 12),
     ControlChangeCommand.rangeCommand('Expression Pedal', 11),
-    
+
     //ControlChangeCommand.rangeCommand('Volumne', ??),
     ControlChangeCommand.rangeCommand('Model Volume', 103),
     ControlChangeCommand.rangeCommand('Gain', 102),
-    
+
     ControlChangeCommand.rangeCommand('Bass', 23),
     ControlChangeCommand.rangeCommand('Bass Freq', 24),
     ControlChangeCommand.rangeCommand('Mid', 24), // Same as Bass Freq??
@@ -35,9 +35,9 @@ export const TonexConfig = {
 
     ControlChangeCommand.toggleCommand('EQ Patch', 30), // toggle or range?
     ControlChangeCommand.rangeCommand('Mix', 104),
-    
+
     // Reverb
-    ControlChangeCommand.toggleCommand('Reverb', 75), 
+    ControlChangeCommand.toggleCommand('Reverb', 75),
     ControlChangeCommand.rangeCommand('Reverb Type', 85), // TODO - multi select commands
     ControlChangeCommand.rangeCommand('Reverb Time', 76),
     ControlChangeCommand.rangeCommand('Reverb Pre Delay', 77),
@@ -48,14 +48,14 @@ export const TonexConfig = {
     ControlChangeCommand.toggleCommand('Noise Gate', 14),
     ControlChangeCommand.rangeCommand('NG Release', 16),
     ControlChangeCommand.rangeCommand('NG Depth', 17),
-    
+
     // Compressor
     ControlChangeCommand.toggleCommand('Compressor', 18),
     ControlChangeCommand.rangeCommand('Comp Gain', 20),
     ControlChangeCommand.rangeCommand('Comp Attack', 21),
     ControlChangeCommand.rangeCommand('Comp Threshold', 22), // CMP PATC??
 
-    // TODO: Mic Commands    
+    // TODO: Mic Commands
   ],
 
   /*

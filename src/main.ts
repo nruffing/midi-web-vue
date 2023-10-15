@@ -1,3 +1,4 @@
+import '../node_modules/data-grid-vue/lib/styles/DataGridVueDark.css'
 import './assets/main.css'
 
 import { createApp } from 'vue'

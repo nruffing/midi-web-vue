@@ -21,10 +21,12 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
+import { mapStores } from 'pinia'
 import { ControlChangeCommandType, type ControlChangeCommand, ControlChangeParameter } from '@/midi/controlChange'
 import type { Controllable } from '@/config/controllable'
 import ControlToggle from './ControlToggle.vue'
 import ControlValue from './ControlValue.vue'
+import { useMidiStore } from '@/stores/midiStore'
 
 interface Data {
   value: number
@@ -58,6 +60,7 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapStores(useMidiStore),
     isToggle(): boolean {
       return this.command.type === ControlChangeCommandType.toggle
     },
@@ -71,7 +74,8 @@ export default defineComponent({
   methods: {
     onValueUpdate() {
       if (this.output) {
-        this.parameter?.sendValue(this.output, this.value, this.channel)
+        const log = this.parameter?.sendValue(this.output, this.value, this.channel)
+        this.midiStore.log(log)
       }
     },
   },
