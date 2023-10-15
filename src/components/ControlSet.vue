@@ -139,9 +139,6 @@ export default defineComponent({
     },
     selectConfig(name: string | undefined) {
       this.selectedConfig = name ? this.configStore.configs.find(c => c.name === name) : undefined
-      if (!this.selectedConfig && this.configStore.configs?.length) {
-        this.selectedConfig = this.configStore.configs[0]
-      }
     },
     selectChannel(channel: MidiChannel | number | undefined) {
       this.selectedChannel = channel || channel === 0 ? this.midiStore.channels.find(c => c.value === channel) : undefined
@@ -180,6 +177,7 @@ export default defineComponent({
   display: grid;
   gap: var(--spacer-3x);
   border: var(--control-group-border);
+  border-radius: var(--border-radius);
   padding: var(--spacer);
 }
 

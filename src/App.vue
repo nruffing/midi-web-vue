@@ -1,6 +1,4 @@
 <template>
-  <!-- <header>
-  </header> -->
   <RouterView v-if="devicesStore.outputs" />
 </template>
 

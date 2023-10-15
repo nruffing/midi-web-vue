@@ -1,8 +1,5 @@
 <template>
   <div class="control-set-list">
-    <div class="control-set-list-header">
-      <button @click="addControlSet">Add</button>
-    </div>
     <ControlSet
       v-for="controlSet in controlSets"
       :model-value="controlSet"

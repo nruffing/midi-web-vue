@@ -1,8 +1,29 @@
 @import './base.css';
 
+body, #app {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 #app {
-  height: 100vh;
-  width: 100vw;
+  padding-right: var(--spacer-2x);
+}
+
+header {
+  padding: var(--spacer) var(--spacer-2x);
+  padding-top: var(--spacer-2x);
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacer);
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .control {
@@ -21,4 +42,8 @@
 
 .control-label {
   margin-top: var(--spacer-half);
+}
+
+.flex-spacer {
+  flex: 1;
 }
