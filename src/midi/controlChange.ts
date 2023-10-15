@@ -2,6 +2,21 @@ import type { Controllable } from '@/config/controllable'
 import { validateByte } from './byteUtilities'
 import type { MidiChannel } from './midiChannel'
 
+export class ControlChangeCommandGroup {
+  name: string
+  rows: number
+  columns: number
+  commands: ControlChangeCommand[]
+
+  constructor(name: string, rows: number, commands: ControlChangeCommand[]) {
+    this.name = name
+    this.rows = rows
+    this.commands = commands
+
+    this.columns = Math.ceil(this.commands.length / this.rows)
+  }
+}
+
 export class ControlChangeCommand {
   name: string
   type: ControlChangeCommandType

@@ -1,4 +1,4 @@
-import type { ControlChangeCommand } from '@/midi/controlChange'
+import type { ControlChangeCommand, ControlChangeCommandGroup } from '@/midi/controlChange'
 import type { MidiChannel } from '@/midi/midiChannel'
 
 export interface Controllable {
@@ -12,7 +12,7 @@ export interface Controllable {
   patchChangeCommand: number
 
   patchBankCommand: ControlChangeCommand | undefined
-  controlChangeCommands: ControlChangeCommand[]
+  controlChangeCommandGroups: ControlChangeCommandGroup[]
 
   minPatch: number
   maxPatch: number

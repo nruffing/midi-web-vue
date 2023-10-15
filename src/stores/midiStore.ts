@@ -3,8 +3,8 @@ import type { MidiCommandLog } from '@/midi/controlChange'
 import { channels, type MidiChannelOption } from '@/midi/midiChannel'
 
 export interface State {
-  commandHistory: MidiCommandLog[],
-  channels: MidiChannelOption[],
+  commandHistory: MidiCommandLog[]
+  channels: MidiChannelOption[]
 }
 
 export const useMidiStore = defineStore('midi', {

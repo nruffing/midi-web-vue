@@ -103,9 +103,9 @@ export default defineComponent({
 
 <style scoped>
 .dgv-data-grid-container {
-  flex: 1;
   --dgv-header-font-size: 1.2rem;
   --dgv-cell-font-size: 1.6rem;
   --dgv-cell-padding: 0.2rem 1rem;
+  min-height: 400px;
 }
 </style>

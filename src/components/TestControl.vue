@@ -12,8 +12,20 @@
       display-property="name"
       @update:model-value="updateModelValue"
     />
-    <input type="number" v-model="commandNumber" min="1" max="127" @change="updateModelValue" />
-    <input type="number" v-model="value" min="0" max="127" @change="updateModelValue" />
+    <input
+      type="number"
+      v-model="commandNumber"
+      min="1"
+      max="127"
+      @change="updateModelValue"
+    />
+    <input
+      type="number"
+      v-model="value"
+      min="0"
+      max="127"
+      @change="updateModelValue"
+    />
   </div>
 </template>
 

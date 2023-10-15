@@ -8,7 +8,7 @@ export const GenerationLossConfig = {
   specUrl:
     'https://static1.squarespace.com/static/622176a9b8d15d57ffbf5700/t/63385713c84bf611e7eb673c/1664636692416/Generation+Loss+MKII_MIDI+Manual_Pedal_Chase+Bliss.pdf',
 
-  controlChangeCommands: [
+  controlChangeCommandGroups: [
     // TODO
   ],
 

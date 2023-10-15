@@ -25,14 +25,34 @@
       v-if="selectedConfig && selectedChannel"
       class="controls-container"
     >
-      <Control
-        v-for="command in selectedConfig?.controlChangeCommands"
-        :key="modelValue.id + selectedConfig.name + command.commandNumber"
-        :output="selectedOutput"
-        :config="selectedConfig"
-        :channel="selectedChannel.value"
-        :command="command"
-      />
+      <div
+        v-for="group in selectedConfig.controlChangeCommandGroups"
+        class="control-group"
+        :class="{
+          'no-label': !group.name,
+        }"
+        :style="{
+          gridTemplateRows: `repeat(${group.rows + 1}, auto)`,
+          gridTemplateColumns: `repeat(${group.columns}, auto)`,
+        }"
+      >
+        <Control
+          v-for="command in group.commands"
+          :key="modelValue.id + selectedConfig.name + command.commandNumber"
+          :output="selectedOutput"
+          :config="selectedConfig"
+          :channel="selectedChannel.value"
+          :command="command"
+        />
+        <span
+          class="control-group-label"
+          :style="{
+            gridColumnEnd: `span ${group.columns}`,
+          }"
+        >
+          {{ group.name }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -154,5 +174,21 @@ export default defineComponent({
   flex-wrap: wrap;
   gap: var(--spacer-3x);
   justify-content: center;
+}
+
+.control-group {
+  display: grid;
+  gap: var(--spacer-3x);
+  border: var(--control-group-border);
+  padding: var(--spacer);
+}
+
+.control-group.no-label {
+  border: none;
+}
+
+.control-group-label {
+  color: var(--control-group-label-color);
+  text-align: center;
 }
 </style>

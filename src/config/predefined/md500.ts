@@ -7,7 +7,7 @@ export const Md500Config = {
   shortName: 'MD-500',
   specUrl: 'https://static.roland.com/assets/media/pdf/MD-500_MIDI_Imple_eng01_W.pdf',
 
-  controlChangeCommands: [
+  controlChangeCommandGroups: [
     // TODO
   ],
 } as Controllable

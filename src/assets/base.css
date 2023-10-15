@@ -20,7 +20,10 @@
   --color-background: var(--base-900);
   --color-text: var(--base-100);
 
-  --control-set-border: var(--base-600) solid 1px;
+  --control-set-border: var(--primary-400) solid 1px;
+
+  --control-group-border: var(--base-600) solid 1px;
+  --control-group-label-color: var(--primary-400);
 
   --control-toggle-off-color: var(--base-200);
   --control-toggle-on-color: var(--primary-400);
