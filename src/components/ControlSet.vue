@@ -20,6 +20,11 @@
         display-property="name"
         @update:model-value="updateModelValue"
       />
+      <div class="flex-spacer"></div>
+      <Icon
+        name="delete"
+        @click="$emit('delete')"
+      />
     </div>
     <div
       v-if="selectedConfig && selectedChannel"
@@ -67,6 +72,7 @@ import SelectInput from './SelectInput.vue'
 import { controllableSort, type Controllable } from '@/config/controllable'
 import { MidiChannel, type MidiChannelOption } from '@/midi/midiChannel'
 import Control from './Control.vue'
+import Icon from './Icon.vue'
 
 interface Data {
   selectedOutput: MIDIOutput | undefined
@@ -86,6 +92,7 @@ export default defineComponent({
   components: {
     SelectInput,
     Control,
+    Icon,
   },
   props: {
     modelValue: {

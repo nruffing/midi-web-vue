@@ -9,6 +9,7 @@
   --base-100: #dddddd;
   --base-000: #ffffff;
 
+  --primary-600: #ff3300;
   --primary-400: #ff7b00;
   --primary-200: #ff9d41;
 
@@ -37,6 +38,10 @@
 
   --control-select-unselected-color: var(--base-300);
   --control-select-selected-color: var(--primary-200);
+
+  --icon-color: var(--base-300);
+  --icon-hover-color: var(--primary-400);
+  --icon-hover-delete-color: var(--primary-600);
 
   --spacer: 1rem;
   --spacer-2x: 2rem;

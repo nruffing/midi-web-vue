@@ -5,6 +5,7 @@
       :model-value="controlSet"
       :key="controlSet.id"
       @update:model-value="saveControlSets"
+      @delete="deleteControlSet(controlSet)"
     />
   </div>
 </template>
@@ -40,13 +41,20 @@ export default defineComponent({
       this.controlSets.push({
         id: uuidv4(),
       } as ControlSetState)
+      this.saveControlSets(undefined)
     },
-    saveControlSets(updatedState: ControlSetState) {
+    deleteControlSet(deletedSet: ControlSetState) {
+      this.controlSets = this.controlSets.filter(c => c.id !== deletedSet.id)
+      this.saveControlSets(undefined)
+    },
+    saveControlSets(updatedState: ControlSetState | undefined) {
       const sets = [...this.controlSets]
-      for (var set of sets) {
-        if (set.id === updatedState.id) {
-          Object.assign(set, updatedState)
-          break
+      if (updatedState) {
+        for (var set of sets) {
+          if (set.id === updatedState.id) {
+            Object.assign(set, updatedState)
+            break
+          }
         }
       }
       saveToLocalStorage(LocalStorageKeys.controlSets, sets)
