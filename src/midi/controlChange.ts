@@ -20,7 +20,7 @@ export class ControlChangeCommand {
     maxValue: number | undefined,
     offValue: number | undefined,
     onValue: number | undefined,
-    selectItems: ControlChangeSelectItem[] | undefined
+    selectItems: ControlChangeSelectItem[] | undefined,
   ) {
     validateByte(commandNumber, 'commandNumber')
     validateByte(minValue, 'minValue')
@@ -56,8 +56,8 @@ export class ControlChangeCommand {
 }
 
 export interface ControlChangeSelectItem {
-  name: string,
-  value: number,
+  name: string
+  value: number
 }
 
 export enum ControlChangeCommandType {
