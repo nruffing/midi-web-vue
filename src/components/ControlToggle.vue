@@ -72,10 +72,21 @@ export default defineComponent({
   },
   data(): Data {
     return {
-      isOn: this.modelValue === this.onValue,
+      isOn: false,
     }
   },
+  mounted() {
+    this.updateState()
+  },
+  watch: {
+    modelValue() {
+      this.updateState()
+    },
+  },
   methods: {
+    updateState() {
+      this.isOn = this.modelValue === this.onValue
+    },
     onToggle() {
       this.isOn = !this.isOn
       this.$emit('update:model-value', this.isOn ? this.onValue : this.offValue)

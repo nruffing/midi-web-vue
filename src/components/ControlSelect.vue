@@ -45,7 +45,18 @@ export default defineComponent({
       selected: undefined,
     }
   },
+  mounted() {
+    this.updateState()
+  },
+  watch: {
+    modelValue() {
+      this.updateState()
+    },
+  },
   methods: {
+    updateState() {
+      this.selected = this.selectItems.find(i => i.value === this.modelValue)
+    },
     onSelect(selectItem: ControlChangeSelectItem) {
       this.selected = selectItem
       this.$emit('update:model-value', selectItem.value)

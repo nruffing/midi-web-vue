@@ -48,6 +48,8 @@
           :config="selectedConfig"
           :channel="selectedChannel.value"
           :command="command"
+          :model-value="controlStateMap.get(command.name)"
+          @update:model-value="onControlUpdated"
         />
         <span
           class="control-group-label"
@@ -71,13 +73,14 @@ import { useMidiStore } from '@/stores/midiStore'
 import SelectInput from './SelectInput.vue'
 import { controllableSort, type Controllable } from '@/config/controllable'
 import { MidiChannel, type MidiChannelOption } from '@/midi/midiChannel'
-import Control from './Control.vue'
+import Control, { type ControlState } from './Control.vue'
 import Icon from './Icon.vue'
 
 interface Data {
   selectedOutput: MIDIOutput | undefined
   selectedConfig: Controllable | undefined
   selectedChannel: MidiChannelOption | undefined
+  controlStateMap: Map<string, ControlState>
 }
 
 export interface ControlSetState {
@@ -85,6 +88,7 @@ export interface ControlSetState {
   outputId: string | undefined
   configName: string | undefined
   channel: number | undefined
+  controls: ControlState[]
 }
 
 export default defineComponent({
@@ -105,6 +109,7 @@ export default defineComponent({
       selectedOutput: undefined,
       selectedConfig: undefined,
       selectedChannel: undefined,
+      controlStateMap: new Map<string, ControlState>(),
     }
   },
   computed: {
@@ -113,8 +118,29 @@ export default defineComponent({
   },
   mounted() {
     this.loadModelValue()
+    this.loadGroupState()
   },
   methods: {
+    loadGroupState() {
+      this.controlStateMap = new Map<string, ControlState>()
+      if (!this.selectedConfig) {
+        return
+      }
+      for (const group of this.selectedConfig.controlChangeCommandGroups) {
+        for (const command of group.commands) {
+          this.controlStateMap.set(command.name, { name: command.name, value: 0 })
+        }
+      }
+      this.loadControlState()
+    },
+    loadControlState() {
+      for (const controlState of this.modelValue.controls ?? []) {
+        const state = this.controlStateMap.get(controlState.name)
+        if (state) {
+          Object.assign(state, controlState)
+        }
+      }
+    },
     loadModelValue() {
       this.selectOutput(this.modelValue.outputId)
       this.selectConfig(this.modelValue.configName)
@@ -127,6 +153,7 @@ export default defineComponent({
         outputId: this.selectedOutput?.id,
         configName: this.selectedConfig?.name,
         channel: this.selectedChannel?.value,
+        controls: Array.from(this.controlStateMap.values()),
       } as ControlSetState)
     },
     onConfigSelected() {
@@ -149,6 +176,13 @@ export default defineComponent({
     },
     selectChannel(channel: MidiChannel | number | undefined) {
       this.selectedChannel = channel || channel === 0 ? this.midiStore.channels.find(c => c.value === channel) : undefined
+    },
+    onControlUpdated(controlState: ControlState) {
+      const state = this.controlStateMap.get(controlState.name)
+      if (state) {
+        Object.assign(state, controlState)
+        this.updateModelValue()
+      }
     },
   },
 })

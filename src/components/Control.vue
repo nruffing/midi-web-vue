@@ -41,10 +41,19 @@ interface Data {
   parameter: ControlChangeParameter | undefined
 }
 
+export interface ControlState {
+  name: string
+  value: number
+}
+
 export default defineComponent({
   name: 'Control',
   components: { ControlToggle, ControlValue, ControlSelect },
   props: {
+    modelValue: {
+      type: Object as PropType<ControlState>,
+      required: false,
+    },
     output: {
       type: Object as PropType<MIDIOutput>,
     },
@@ -81,12 +90,17 @@ export default defineComponent({
   },
   mounted() {
     this.parameter = new ControlChangeParameter(this.config, this.command)
+    this.value = this.modelValue?.value ?? 0
   },
   methods: {
     onValueUpdate() {
       if (this.output) {
         const log = this.parameter?.sendValue(this.output, this.value, this.channel)
         this.midiStore.log(log)
+        this.$emit('update:model-value', {
+          name: this.command.name,
+          value: this.value,
+        })
       }
     },
   },

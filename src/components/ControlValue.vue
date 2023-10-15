@@ -160,8 +160,10 @@ export default defineComponent({
       updateValueDebounce: debounce(this.updateModelValue, 300),
     }
   },
-  mounted() {
-    this.value = this.midPoint
+  watch: {
+    modelValue() {
+      this.value = this.modelValue
+    },
   },
   computed: {
     stepsHighlighted(): number {
