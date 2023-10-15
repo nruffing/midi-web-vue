@@ -68,7 +68,7 @@ export default defineComponent({
         },
         {
           field: new Field('controlChangeCommand'),
-          dataType: DataType.number,
+          dataType: DataType.alphanumeric,
         },
         {
           field: new Field('timestamp', log => log.timestamp.toLocaleTimeString()),

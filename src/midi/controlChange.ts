@@ -69,12 +69,11 @@ export enum ControlChangeCommandType {
 export class ControlChangeParameter {
   config: Controllable
   command: ControlChangeCommand
-  value: number
+  value: number = 0
 
-  constructor(config: Controllable, command: ControlChangeCommand, value: number = 0) {
+  constructor(config: Controllable, command: ControlChangeCommand) {
     this.config = config
     this.command = command
-    this.value = value
   }
 
   sendValue(output: MIDIOutput, value: number | undefined, channel: MidiChannel): MidiCommandLog {
@@ -88,7 +87,7 @@ export class ControlChangeParameter {
     return {
       value,
       channel,
-      controlChangeCommand: this.config.controlChangeCommand,
+      controlChangeCommand: [this.config.controlChangeCommand, this.command.commandNumber],
       bytes,
       output: output.name ?? '',
       config: this.config.shortName,
@@ -100,7 +99,7 @@ export class ControlChangeParameter {
 export interface MidiCommandLog {
   value: number | undefined
   channel: MidiChannel
-  controlChangeCommand: number
+  controlChangeCommand: number[]
   bytes: number[]
   output: string
   config: string

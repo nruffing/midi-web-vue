@@ -80,7 +80,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.parameter = new ControlChangeParameter(this.config, this.command, this.value)
+    this.parameter = new ControlChangeParameter(this.config, this.command)
   },
   methods: {
     onValueUpdate() {

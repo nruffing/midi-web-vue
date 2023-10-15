@@ -16,7 +16,7 @@
       />
       <SelectInput
         v-model="selectedChannel"
-        :items="channels"
+        :items="midiStore.channels"
         display-property="name"
         @update:model-value="updateModelValue"
       />
@@ -42,9 +42,10 @@ import { defineComponent, type PropType } from 'vue'
 import { mapStores } from 'pinia'
 import { useDevicesStore } from '@/stores/devicesStore'
 import { useConfigStore } from '@/stores/configStore'
+import { useMidiStore } from '@/stores/midiStore'
 import SelectInput from './SelectInput.vue'
 import { controllableSort, type Controllable } from '@/config/controllable'
-import { channels, MidiChannel, type MidiChannelOption } from '@/midi/midiChannel'
+import { MidiChannel, type MidiChannelOption } from '@/midi/midiChannel'
 import Control from './Control.vue'
 
 interface Data {
@@ -80,9 +81,8 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapStores(useDevicesStore, useConfigStore),
+    ...mapStores(useDevicesStore, useConfigStore, useMidiStore),
     controllableSort: () => controllableSort,
-    channels: () => channels,
   },
   mounted() {
     this.loadModelValue()
@@ -124,7 +124,7 @@ export default defineComponent({
       }
     },
     selectChannel(channel: MidiChannel | number | undefined) {
-      this.selectedChannel = channel || channel === 0 ? this.channels.find(c => c.value === channel) : undefined
+      this.selectedChannel = channel || channel === 0 ? this.midiStore.channels.find(c => c.value === channel) : undefined
     },
   },
 })
