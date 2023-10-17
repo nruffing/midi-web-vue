@@ -57,13 +57,13 @@ export const Grandmeister40Config = {
     new ControlChangeCommandGroup('Delay', 1, [
       ControlChangeCommand.toggleCommand('On/Off', 53),
       ControlChangeCommand.rangeCommand('Feedback', 27),
-      ControlChangeCommand.rangeCommand('Volume', 28),
+      ControlChangeCommand.rangeCommand('Volume', 28), // TODO: Delay time??
     ]),
 
     new ControlChangeCommandGroup('Reverb', 1, [ControlChangeCommand.toggleCommand('On/Off', 54), ControlChangeCommand.rangeCommand('Volume', 29)]),
 
     new ControlChangeCommandGroup('', 1, [ControlChangeCommand.toggleCommand('FX Loop', 55)]),
 
-    new ControlChangeCommandGroup('', 1, [ControlChangeCommand.toggleCommand('Noise Gate', 63)]),
+    new ControlChangeCommandGroup('', 1, [ControlChangeCommand.toggleCommand('Noise Gate', 63)]), // TODO: NG Value?
   ],
 } as Controllable

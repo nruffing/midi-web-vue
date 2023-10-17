@@ -34,7 +34,7 @@ export const TonexConfig = {
 
     new ControlChangeCommandGroup('Noise Gate', 2, [
       ControlChangeCommand.toggleCommand('On/Off', 14),
-      ControlChangeCommand.toggleCommand('Threshold', 15),
+      ControlChangeCommand.rangeCommand('Threshold', 15),
       ControlChangeCommand.rangeCommand('Release', 16),
       ControlChangeCommand.rangeCommand('Depth', 17),
     ]),
@@ -42,7 +42,7 @@ export const TonexConfig = {
     new ControlChangeCommandGroup('Compressor', 2, [
       ControlChangeCommand.toggleCommand('On/Off', 18),
       ControlChangeCommand.rangeCommand('Post/Pre', 22),
-      ControlChangeCommand.toggleCommand('Threshold', 19),
+      ControlChangeCommand.rangeCommand('Threshold', 19),
       ControlChangeCommand.rangeCommand('Gain', 20),
       ControlChangeCommand.rangeCommand('Attack', 21),
     ]),
