@@ -9,7 +9,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "format": "npx prettier --write \"./**/*.{ts,json,vue,css}\"",
-    "upgrade-all": "ncu --upgrade",
+    "upgrade-all": "ncu --upgrade --reject @types/node",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/debounce": "^1.2.3",
-    "@types/node": "18.18.18",
+    "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vue/tsconfig": "^0.4.0",
     "husky": "^8.0.3",
