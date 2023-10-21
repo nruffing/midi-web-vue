@@ -1,5 +1,5 @@
 import type { Controllable } from '@/config/controllable'
-import type { ControlChangeCommand } from '@/midi/controlChange'
+import { ControlChangeCommandGroup } from '@/midi/controlChange'
 import { MidiChannel } from '@/midi/midiChannel'
 
 export const DefaultConfig = {
@@ -10,7 +10,7 @@ export const DefaultConfig = {
   patchChangeCommand: 0xc,
 
   patchBankCommand: undefined,
-  controlChangeCommands: [] as ControlChangeCommand[],
+  controlChangeCommandGroups: [] as ControlChangeCommandGroup[],
 
   minPatch: 0,
   maxPatch: 127,

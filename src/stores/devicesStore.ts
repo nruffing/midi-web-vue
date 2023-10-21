@@ -4,12 +4,14 @@ import { defineStore } from 'pinia'
 
 export interface State {
   outputs: MIDIOutput[] | undefined
+  inputs: MIDIInput[] | undefined
   midiPermissionRequired: boolean
 }
 
 export const useDevicesStore = defineStore('devices', {
   state: (): State => ({
     outputs: undefined,
+    inputs: undefined,
     midiPermissionRequired: false,
   }),
   actions: {
@@ -24,6 +26,7 @@ export const useDevicesStore = defineStore('devices', {
         // requesting access when state is "prompt" will prompt user for permission
         const midiAccess = await navigator.requestMIDIAccess()
         this.outputs = Array.from(midiAccess.outputs.values()) ?? []
+        this.inputs = Array.from(midiAccess.inputs.values()) ?? []
       } else if (isPrompt) {
         this.midiPermissionRequired = true
       }

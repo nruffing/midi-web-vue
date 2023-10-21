@@ -11,8 +11,11 @@
       </button>
     </header>
     <ControlSetList ref="setList" />
-    <TestControl v-if="showDebug" />
-    <MidiLog v-if="showDebug" />
+    <template v-if="showDebug">
+      <InputLogger />
+      <TestControl />
+      <MidiLog />
+    </template>
   </main>
 </template>
 
@@ -21,6 +24,7 @@ import ControlSetList from '@/components/ControlSetList.vue'
 import TestControl from '@/components/TestControl.vue'
 import MidiLog from '@/components/MidiLog.vue'
 import { defineComponent } from 'vue'
+import InputLogger from '@/components/InputLogger.vue'
 
 interface Data {
   showDebug: boolean
@@ -32,6 +36,7 @@ export default defineComponent({
     ControlSetList,
     TestControl,
     MidiLog,
+    InputLogger,
   },
   data(): Data {
     return {
